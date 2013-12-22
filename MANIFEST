@@ -1,0 +1,45 @@
+amqp.h
+amqp_api.c
+amqp_connection.c
+amqp_consumer.c
+amqp_framing.c
+amqp_framing.h
+amqp_mem.c
+amqp_private.h
+amqp_socket.c
+amqp_socket.h
+amqp_ssl_socket.h
+amqp_table.c
+amqp_tcp_socket.c
+amqp_tcp_socket.h
+amqp_timer.c
+amqp_timer.h
+amqp_url.c
+Changes
+LICENSE
+LICENSE-MIT
+Makefile.PL
+MANIFEST			This list of files
+RabbitMQ.pm
+RabbitMQ.xs
+t/01_use_ok.t
+typemap
+xt/001_declare_exchange.t
+xt/002_publish.t
+xt/003_consume.t
+xt/004_selfconsume.t
+xt/005_noack.t
+xt/006_txn.t
+xt/007_get.t
+xt/008_queue_declare.t
+xt/009_no_route.t
+xt/010_qos.t
+xt/011_hearbeat.t
+xt/012_timeout.t
+xt/013_headers.t
+xt/014_bind_with_headers.t
+xt/015_declare_queue_with_headers.t
+xt/016_reject.t
+xt/017_changes.t
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
