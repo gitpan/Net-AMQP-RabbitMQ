@@ -19,4 +19,4 @@ no_index:
 resources:
   bugtracker: https://github.com/n0body-/net-amqp-rabbitmq/issues
   repository: git://github.com/n0body-/net-amqp-rabbitmq.git
-version: 0.003001
+version: 0.004000

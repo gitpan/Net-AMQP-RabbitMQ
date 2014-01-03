@@ -41,5 +41,6 @@ xt/014_bind_with_headers.t
 xt/015_declare_queue_with_headers.t
 xt/016_reject.t
 xt/017_changes.t
+xt/018_transaction_memory_leak.t
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)
