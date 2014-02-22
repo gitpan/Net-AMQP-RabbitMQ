@@ -1,12 +1,10 @@
 ---
 abstract: 'interact with RabbitMQ over AMQP using librabbitmq'
 author:
-  - 'Theo Schlossnagle <jesus@omniti.com>'
   - 'Mark Ellis <nobody@cpan.org>'
-build_requires:
-  ExtUtils::MakeMaker: 0
+build_requires: {}
 dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.84, CPAN::Meta::Converter version 2.133380'
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921'
 license: mozilla
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,6 +15,6 @@ no_index:
     - t
     - inc
 resources:
-  bugtracker: https://github.com/n0body-/net-amqp-rabbitmq/issues
-  repository: git://github.com/n0body-/net-amqp-rabbitmq.git
-version: 0.004000
+  bugtracker: https://github.com/markwellis/net-amqp-rabbitmq/issues
+  repository: git://github.com/markwellis/net-amqp-rabbitmq.git
+version: 0.004001
