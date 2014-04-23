@@ -4,11 +4,11 @@ author:
   - 'Mark Ellis <nobody@cpan.org>'
 build_requires: {}
 dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921'
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.140640'
 license: mozilla
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Net-AMQP-RabbitMQ
 no_index:
   directory:
@@ -17,4 +17,4 @@ no_index:
 resources:
   bugtracker: https://github.com/markwellis/net-amqp-rabbitmq/issues
   repository: git://github.com/markwellis/net-amqp-rabbitmq.git
-version: 0.004001
+version: '0.004002'
