@@ -91,6 +91,8 @@ amqp_connection_state_t amqp_new_connection(void)
     goto out_nomem;
   }
 
+  init_amqp_pool(&state->properties_pool, 512);
+
   return state;
 
 out_nomem:
@@ -181,6 +183,7 @@ int amqp_destroy_connection(amqp_connection_state_t state)
     free(state->outbound_buffer.bytes);
     free(state->sock_inbound_buffer.bytes);
     amqp_socket_delete(state->socket);
+    empty_amqp_pool(&state->properties_pool);
     free(state);
   }
   return status;
@@ -515,4 +518,9 @@ int amqp_send_frame(amqp_connection_state_t state,
   }
 
   return res;
+}
+amqp_table_t *
+amqp_get_server_properties(amqp_connection_state_t state)
+{
+  return &state->server_properties;
 }

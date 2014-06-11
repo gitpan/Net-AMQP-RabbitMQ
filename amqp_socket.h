@@ -28,11 +28,7 @@
 #ifndef AMQP_SOCKET_H
 #define AMQP_SOCKET_H
 
-#include "amqp.h"
-
-#ifdef _WIN32
-# include <WinSock2.h>
-#endif
+#include "amqp_private.h"
 
 AMQP_BEGIN_DECLS
 
@@ -181,6 +177,9 @@ amqp_open_socket_noblock(char const *hostname, int portnumber, struct timeval *t
 
 int
 amqp_queue_frame(amqp_connection_state_t state, amqp_frame_t *frame);
+
+int
+amqp_put_back_frame(amqp_connection_state_t state, amqp_frame_t *frame);
 
 int
 amqp_simple_wait_frame_on_channel(amqp_connection_state_t state,

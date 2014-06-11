@@ -2,9 +2,12 @@
 abstract: 'interact with RabbitMQ over AMQP using librabbitmq'
 author:
   - 'Mark Ellis <nobody@cpan.org>'
-build_requires: {}
+build_requires:
+  ExtUtils::MakeMaker: '0'
+configure_requires:
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921'
+generated_by: 'ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.141170'
 license: mozilla
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,4 +20,4 @@ no_index:
 resources:
   bugtracker: https://github.com/markwellis/net-amqp-rabbitmq/issues
   repository: git://github.com/markwellis/net-amqp-rabbitmq.git
-version: '0.005002'
+version: '0.005003'
