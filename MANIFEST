@@ -22,26 +22,26 @@ Makefile.PL
 MANIFEST			This list of files
 RabbitMQ.pm
 RabbitMQ.xs
-t/01_use_ok.t
+t/000_use_ok.t
+t/001_declare_exchange.t
+t/002_publish.t
+t/003_consume.t
+t/004_selfconsume.t
+t/005_noack.t
+t/006_txn.t
+t/007_get.t
+t/008_queue_declare.t
+t/009_no_route.t
+t/010_qos.t
+t/011_hearbeat.t
+t/012_timeout.t
+t/013_headers.t
+t/014_bind_with_headers.t
+t/015_declare_queue_with_headers.t
+t/016_reject.t
+t/017_changes.t
+t/018_is_connected.t
 typemap
-xt/001_declare_exchange.t
-xt/002_publish.t
-xt/003_consume.t
-xt/004_selfconsume.t
-xt/005_noack.t
-xt/006_txn.t
-xt/007_get.t
-xt/008_queue_declare.t
-xt/009_no_route.t
-xt/010_qos.t
-xt/011_hearbeat.t
-xt/012_timeout.t
-xt/013_headers.t
-xt/014_bind_with_headers.t
-xt/015_declare_queue_with_headers.t
-xt/016_reject.t
-xt/017_changes.t
-xt/018_is_connected.t
 xt/100_transaction_memory_leak.t
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)
