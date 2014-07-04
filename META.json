@@ -4,7 +4,7 @@
       "Mark Ellis <nobody@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.141170",
+   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "mozilla_1_1"
    ],
@@ -19,18 +19,6 @@
          "inc"
       ]
    },
-   "prereqs" : {
-      "build" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "0"
-         }
-      },
-      "configure" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "0"
-         }
-      }
-   },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
@@ -42,5 +30,5 @@
          "web" : "https://github.com/markwellis/net-amqp-rabbitmq"
       }
    },
-   "version" : "0.005005"
+   "version" : "0.005007"
 }

@@ -89,6 +89,7 @@ int internal_recv(HV *RETVAL, amqp_connection_state_t conn, int piggyback) {
   size_t body_target;
   size_t body_received;
   int result;
+  int is_utf8_body = 1; // The body is UTF-8 by default
 
   result = 0;
   while (1) {
@@ -141,6 +142,19 @@ int internal_recv(HV *RETVAL, amqp_connection_state_t conn, int piggyback) {
     if (p->_flags & AMQP_BASIC_CONTENT_ENCODING_FLAG) {
       hv_store(props, "content_encoding", strlen("content_encoding"),
                newSVpvn(p->content_encoding.bytes, p->content_encoding.len), 0);
+
+      /*
+       * Since we could have UTF-8 in our content-encoding, and most people seem like they
+       * treat this like the default, we're looking for the presence of content-encoding but
+       * the absence of a case-insensitive "UTF-8".
+       */
+      if (
+        strnlen(p->content_encoding.bytes, p->content_encoding.len) > 0
+        &&
+        (strncasecmp(p->content_encoding.bytes, "UTF-8", p->content_encoding.len) != 0)
+      ) {
+        is_utf8_body = 0;
+      }
     }
     if (p->_flags & AMQP_BASIC_CORRELATION_ID_FLAG) {
       hv_store(props, "correlation_id", strlen("correlation_id"),
@@ -197,10 +211,26 @@ int internal_recv(HV *RETVAL, amqp_connection_state_t conn, int piggyback) {
               0
           );
         }
-        else if( p->headers.entries[i].value.kind == AMQP_FIELD_KIND_UTF8 ) {
+
+        // Handle kind UTF8 and kind BYTES
+        else if(
+          p->headers.entries[i].value.kind == AMQP_FIELD_KIND_UTF8
+          ||
+          p->headers.entries[i].value.kind == AMQP_FIELD_KIND_BYTES
+        ) {
+          SV *hvalue = newSVpvn(
+            p->headers.entries[i].value.value.bytes.bytes,
+            p->headers.entries[i].value.value.bytes.len
+          );
+
+          /* If it's UTF8, set the flag on... */
+          if (p->headers.entries[i].value.kind == AMQP_FIELD_KIND_UTF8) {
+            SvUTF8_on(hvalue);
+          }
+
           hv_store( headers,
               p->headers.entries[i].key.bytes, p->headers.entries[i].key.len,
-              newSVpvn( p->headers.entries[i].value.value.bytes.bytes, p->headers.entries[i].value.value.bytes.len),
+              hvalue,
               0
           );
         }
@@ -230,6 +260,12 @@ int internal_recv(HV *RETVAL, amqp_connection_state_t conn, int piggyback) {
       /* We break here to close the connection */
       Perl_croak(aTHX_ "Short read %llu != %llu", (long long unsigned int)body_received, (long long unsigned int)body_target);
     }
+
+    // Turn on the UTF-8 flag if the body is UTF-8
+    if (is_utf8_body) {
+      SvUTF8_on(payload);
+    }
+    
     hv_store(RETVAL, "body", strlen("body"), payload, 0);
     break;
   }
@@ -338,6 +374,12 @@ net_amqp_rabbitmq_channel_close(conn, channel)
   Net::AMQP::RabbitMQ conn
   int channel
   CODE:
+    /* If we don't have a socket, just return. */
+    if (
+      ! amqp_get_socket( conn )
+    ) {
+      return;
+    }
     die_on_amqp_error(aTHX_ amqp_channel_close(conn, channel, AMQP_REPLY_SUCCESS), conn, "Closing channel");
 
 void
@@ -523,6 +565,7 @@ net_amqp_rabbitmq_recv(conn)
         amqp_socket_close( amqp_get_socket( conn ) );
         Perl_croak(aTHX_ "AMQP socket connection was closed.");
     }
+    sv_2mortal((SV*)RETVAL);
   OUTPUT:
     RETVAL
 
