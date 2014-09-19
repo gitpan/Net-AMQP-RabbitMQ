@@ -1,0 +1,3 @@
+TYPEMAP
+Net::AMQP::RabbitMQ T_PTROBJ
+
