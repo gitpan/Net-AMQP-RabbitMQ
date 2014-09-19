@@ -43,6 +43,8 @@ t/017_changes.t
 t/018_is_connected.t
 t/019_utf8_safety.t
 t/020_dead_channel_close.t
+t/021_json_utf8_in_and_out.t
+t/022_array_headers.t
 typemap
 xt/100_transaction_memory_leak.t
 META.yml                                 Module YAML meta-data (added by MakeMaker)
