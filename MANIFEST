@@ -20,6 +20,7 @@ LICENSE
 LICENSE-MIT
 Makefile.PL
 MANIFEST			This list of files
+manual_tests/001_dead_letter_headers.t
 RabbitMQ.pm
 RabbitMQ.xs
 t/000_use_ok.t

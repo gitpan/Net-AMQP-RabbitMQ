@@ -20,4 +20,4 @@ no_index:
 resources:
   bugtracker: https://github.com/markwellis/net-amqp-rabbitmq/issues
   repository: git://github.com/markwellis/net-amqp-rabbitmq.git
-version: '0.007000'
+version: '0.007001'
